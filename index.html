@@ -1,386 +1,393 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENERGY LOW — Энергетики по лучшей цене</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="https://wertigo.ru/api/shared_files/48edd0da-3262-4a20-b4f9-be60645314f3/files/48edd0da-3262-4a20-b4f9-be60645314f3-2/preview" type="image/png">
-    <link rel="apple-touch-icon" href="https://wertigo.ru/api/shared_files/48edd0da-3262-4a20-b4f9-be60645314f3/files/48edd0da-3262-4a20-b4f9-be60645314f3-2/preview">
-    <link rel="shortcut icon" href="https://wertigo.ru/api/shared_files/48edd0da-3262-4a20-b4f9-be60645314f3/files/48edd0da-3262-4a20-b4f9-be60645314f3-2/preview">
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ENERGY LOW — Энергетики по лучшей цене</title>
+        
+        <!-- Favicon -->
+        <link rel="icon" href="https://wertigo.ru/api/shared_files/48edd0da-3262-4a20-b4f9-be60645314f3/files/48edd0da-3262-4a20-b4f9-be60645314f3-2/preview" type="image/png">
+        <link rel="apple-touch-icon" href="https://wertigo.ru/api/shared_files/48edd0da-3262-4a20-b4f9-be60645314f3/files/48edd0da-3262-4a20-b4f9-be60645314f3-2/preview">
+        <link rel="shortcut icon" href="https://wertigo.ru/api/shared_files/48edd0da-3262-4a20-b4f9-be60645314f3/files/48edd0da-3262-4a20-b4f9-be60645314f3-2/preview">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Impact:wght@400;700&display=swap');
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-        }
-        
-        .hero-bg {
-            background: linear-gradient(135deg, #1a1a1a 0%, #3a0e0e 100%);
-        }
-        
-        .energy-glow {
-            text-shadow: 0 0 30px rgb(255 100 0 / 0.6);
-        }
-        
-        .product-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .product-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
-        }
-        
-        .price-tag {
-            background: linear-gradient(90deg, #f59e0b, #ef4444);
-        }
-        
-        .bestseller, .discount {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 9999px;
-            z-index: 10;
-        }
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Impact:wght@400;700&display=swap');
+            
+            body {
+                font-family: 'Inter', system-ui, sans-serif;
+            }
+            
+            .hero-bg {
+                background: linear-gradient(135deg, #1a1a1a 0%, #3a0e0e 100%);
+            }
+            
+            .energy-glow {
+                text-shadow: 0 0 30px rgb(255 100 0 / 0.6);
+            }
+            
+            .product-card {
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .product-card:hover {
+                transform: translateY(-15px) scale(1.03);
+                box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            }
+            
+            .price-tag {
+                background: linear-gradient(90deg, #f59e0b, #ef4444);
+            }
+            
+            .bestseller, .discount {
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                font-size: 12px;
+                font-weight: 700;
+                padding: 4px 12px;
+                border-radius: 9999px;
+                z-index: 10;
+            }
 
-        /* Мобильное меню */
-        .mobile-menu {
-            transform: translateY(-100%);
-            transition: transform 0.4s ease-in-out;
-        }
-        .mobile-menu.open {
-            transform: translateY(0);
-        }
-    </style>
-</head>
-<body class="bg-zinc-950 text-white overflow-x-hidden">
-<!-- HEADER -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-lg border-b border-orange-500/20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <img src="https://wertigo.ru/api/shared_files/48edd0da-3262-4a20-b4f9-be60645314f3/files/48edd0da-3262-4a20-b4f9-be60645314f3-2/preview" 
-                 alt="ENERGY LOW" 
-                 class="w-9 h-9 sm:w-10 sm:h-10 object-contain">
-            
-            <div class="font-black tracking-tighter text-2xl sm:text-3xl">
-                <span>ENERGY</span>
-                <span class="text-orange-500">LOW</span>
-            </div>
-        </div>
-        
-        <!-- Desktop Nav -->
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-            <a href="#products" class="hover:text-orange-400 transition-colors">Товары</a>
-            <a href="#why" class="hover:text-orange-400 transition-colors">Почему мы</a>
-        </nav>
-        
-        <div class="flex items-center gap-4">
-            <a href="https://t.me/EL_LNR" target="_blank"
-               class="hidden sm:flex items-center gap-2 bg-[#229ED9] hover:bg-[#1a8ac2] px-5 py-3 rounded-2xl font-semibold transition-all text-sm">
-                <i class="fa-brands fa-telegram-plane"></i>
-                <span>@EL_LNR</span>
-            </a>
-            
-            <!-- Hamburger -->
-            <button id="menu-toggle" class="md:hidden text-3xl p-2">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu md:hidden fixed top-[73px] left-0 right-0 bg-zinc-950 border-b border-zinc-800 py-8 px-6 z-40">
-        <nav class="flex flex-col gap-6 text-lg font-medium">
-            <a href="#products" class="hover:text-orange-400 py-3">Товары</a>
-            <a href="#why" class="hover:text-orange-400 py-3">Почему мы</a>
-            
-            <div class="pt-6 border-t border-zinc-800">
-                <div class="text-emerald-400 font-medium mb-2">Работаем в Луганске</div>
-                <div class="text-zinc-400 text-sm">• Восток<br>
-                <span class="text-amber-400">Остальные районы — только ОПТ</span></div>
+            /* Мобильное меню */
+            .mobile-menu {
+                transform: translateY(-100%);
+                transition: transform 0.4s ease-in-out;
+            }
+            .mobile-menu.open {
+                transform: translateY(0);
+            }
+        </style>
+    </head>
+    <body class="bg-zinc-950 text-white overflow-x-hidden">
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-lg border-b border-orange-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="https://wertigo.ru/api/shared_files/48edd0da-3262-4a20-b4f9-be60645314f3/files/48edd0da-3262-4a20-b4f9-be60645314f3-2/preview" 
+                    alt="ENERGY LOW" 
+                    class="w-9 h-9 sm:w-10 sm:h-10 object-contain">
+                
+                <div class="font-black tracking-tighter text-2xl sm:text-3xl">
+                    <span>ENERGY</span>
+                    <span class="text-orange-500">LOW</span>
+                </div>
             </div>
             
-            <a href="https://t.me/EL_LNR" target="_blank"
-               class="mt-6 flex items-center justify-center gap-3 bg-[#229ED9] hover:bg-[#1a8ac2] py-5 rounded-3xl font-semibold text-lg">
-                <i class="fa-brands fa-telegram-plane text-2xl"></i>
-                Написать в Telegram
-            </a>
-        </nav>
-    </div>
-</header>
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#products" class="hover:text-orange-400 transition-colors">Товары</a>
+                <a href="#why" class="hover:text-orange-400 transition-colors">Почему мы</a>
+            </nav>
+            
+    <div class="flex items-center gap-4">
+        <!-- Старый -->
+        <a href="https://t.me/EL_LNR" target="_blank"
+        class="hidden sm:flex items-center gap-2 bg-[#229ED9] hover:bg-[#1a8ac2] px-5 py-3 rounded-2xl font-semibold transition-all text-sm">
+            <i class="fa-brands fa-telegram-plane"></i>
+            <span>@EL_LNR</span>
+        </a>
+        
+        <!-- Новый канал -->
+        <a href="https://t.me/EnergyLow_LNR" target="_blank"
+        class="hidden sm:flex items-center gap-2 bg-[#229ED9] hover:bg-[#1a8ac2] px-5 py-3 rounded-2xl font-semibold transition-all text-sm">
+            <i class="fa-brands fa-telegram-plane"></i>
+            <span>@EnergyLow_LNR</span>
+        </a>
 
-<!-- HERO -->
-<section class="hero-bg min-h-screen flex items-center pt-20 pb-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
-            <div class="space-y-6 md:space-y-8">
-                <div class="inline-flex items-center gap-2 bg-orange-500/10 text-orange-400 px-5 py-2 rounded-full text-sm font-medium">
-                    <i class="fa-solid fa-bolt"></i>
-                    Цены ниже магазинных на 15-30%
+        <!-- Hamburger -->
+        <button id="menu-toggle" class="md:hidden text-3xl p-2">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed top-[73px] left-0 right-0 bg-zinc-950 border-b border-zinc-800 py-8 px-6 z-40">
+            <nav class="flex flex-col gap-6 text-lg font-medium">
+                <a href="#products" class="hover:text-orange-400 py-3">Товары</a>
+                <a href="#why" class="hover:text-orange-400 py-3">Почему мы</a>
+                
+                <div class="pt-6 border-t border-zinc-800">
+                    <div class="text-emerald-400 font-medium mb-2">Работаем в Луганске</div>
+                    <div class="text-zinc-400 text-sm">• Восток<br>
+                    <span class="text-amber-400">Остальные районы — только ОПТ</span></div>
                 </div>
                 
-                <h1 class="text-5xl sm:text-6xl md:text-7xl font-black leading-none tracking-tighter energy-glow">
-                    ЭНЕРГЕТИКИ<br>БЕЗ ПЕРЕПЛАТ
-                </h1>
+                <a href="https://t.me/EL_LNR" target="_blank"
+                class="mt-6 flex items-center justify-center gap-3 bg-[#229ED9] hover:bg-[#1a8ac2] py-5 rounded-3xl font-semibold text-lg">
+                    <i class="fa-brands fa-telegram-plane text-2xl"></i>
+                    Написать в Telegram
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-bg min-h-screen flex items-center pt-20 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
+                <div class="space-y-6 md:space-y-8">
+                    <div class="inline-flex items-center gap-2 bg-orange-500/10 text-orange-400 px-5 py-2 rounded-full text-sm font-medium">
+                        <i class="fa-solid fa-bolt"></i>
+                        Цены ниже магазинных на 15-30%
+                    </div>
+                    
+                    <h1 class="text-5xl sm:text-6xl md:text-7xl font-black leading-none tracking-tighter energy-glow">
+                        ЭНЕРГЕТИКИ<br>БЕЗ ПЕРЕПЛАТ
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl text-zinc-400">
+                        Популярные энергетики дешевле, чем в магазинах.<br>
+                        Свежие партии • Прямые поставки • Никаких посредников
+                    </p>
+                    
+                    <a href="#products" 
+                    class="inline-flex px-8 py-5 bg-orange-500 hover:bg-orange-600 text-black font-bold text-xl rounded-3xl items-center gap-3 transition-all">
+                        Смотреть товары
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    
+                    <div class="flex gap-6 text-sm">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-emerald-500 rounded-2xl flex items-center justify-center text-xl">✅</div>
+                            <div>Оригинал</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-emerald-500 rounded-2xl flex items-center justify-center text-xl">💯</div>
+                            <div>Не просрочка</div>
+                        </div>
+                    </div>
+                </div>
                 
-                <p class="text-xl md:text-2xl text-zinc-400">
-                    Популярные энергетики дешевле, чем в магазинах.<br>
-                    Свежие партии • Прямые поставки • Никаких посредников
+                <div class="relative mt-8 md:mt-0">
+                    <img src="https://wertigo.ru/api/shared_files/08f79686-de90-4dc8-a54f-06ec289c1e4b/files/08f79686-de90-4dc8-a54f-06ec289c1e4b/preview" 
+                        alt="Энергетик Burn" 
+                        class="w-full rounded-3xl shadow-2xl shadow-orange-500/30">
+                    <div class="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 bg-black px-5 py-3 sm:px-6 sm:py-4 rounded-3xl border border-orange-500 shadow-xl">
+                        <div class="flex items-center gap-3">
+                            <div class="text-4xl sm:text-5xl">🔥</div>
+                            <div>
+                                <div class="text-orange-400 text-sm font-bold">Бёрн</div>
+                                <div class="text-3xl sm:text-4xl font-black text-white">120₽</div>
+                                <div class="text-zinc-500 line-through">140₽</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 flex flex-col items-center text-xs text-zinc-500 md:hidden">
+            <div>Листай вниз</div>
+            <i class="fa-solid fa-chevron-down animate-bounce mt-1"></i>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" class="py-20 md:py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">Наши хиты</h2>
+                <p class="inline-block bg-gradient-to-r from-orange-400 to-red-400 text-black font-bold text-lg md:text-xl px-8 py-3 rounded-3xl">
+                    Всегда дешевле. Всегда в наличии.
                 </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 
-                <a href="#products" 
-                   class="inline-flex px-8 py-5 bg-orange-500 hover:bg-orange-600 text-black font-bold text-xl rounded-3xl items-center gap-3 transition-all">
-                    Смотреть товары
-                    <i class="fa-solid fa-arrow-right"></i>
+                <!-- Burn -->
+                <div class="product-card bg-zinc-900 rounded-3xl overflow-hidden border border-orange-500/30 relative">
+                    <div class="discount">СКИДКА 💸</div>
+                    <div class="h-72 md:h-80 bg-gradient-to-br from-red-950 via-amber-950 to-red-900 flex items-center justify-center p-6 md:p-8">
+                        <img src="https://wertigo.ru/api/shared_files/08f79686-de90-4dc8-a54f-06ec289c1e4b/files/08f79686-de90-4dc8-a54f-06ec289c1e4b/preview" 
+                            alt="Burn" class="w-52 md:w-64 drop-shadow-2xl">
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="text-orange-400 font-bold text-sm">Original</div>
+                                <div class="text-2xl md:text-3xl font-bold">Бёрн</div>
+                            </div>
+                            <div class="price-tag text-white px-5 py-2 rounded-2xl text-right">
+                                <div class="text-xs">СЕГОДНЯ</div>
+                                <div class="text-3xl md:text-4xl font-black">120₽</div>
+                                <div class="text-xs line-through opacity-70">140₽</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Adrenaline -->
+                <div class="product-card bg-zinc-900 rounded-3xl overflow-hidden border border-orange-500/30 relative">
+                    <div class="bestseller">ХИТ ПРОДАЖ 🔥</div>
+                    <div class="h-72 md:h-80 bg-gradient-to-br from-zinc-800 via-zinc-950 to-black flex items-center justify-center p-6 md:p-8">
+                        <img src="https://wertigo.ru/api/shared_files/6f0aef22-25d3-4b88-b574-3bd91a94bf04/files/6f0aef22-25d3-4b88-b574-3bd91a94bf04-2/preview" 
+                            alt="Adrenaline Rush" class="w-52 md:w-64 drop-shadow-2xl">
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="text-blue-400 font-bold text-sm">Original</div>
+                                <div class="text-2xl md:text-3xl font-bold">Адреналин</div>
+                            </div>
+                            <div class="price-tag text-white px-5 py-2 rounded-2xl text-right">
+                                <div class="text-xs">ЦЕНА</div>
+                                <div class="text-3xl md:text-4xl font-black">140₽</div>
+                                <div class="text-xs line-through opacity-70">150₽ в магазине</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+    <!-- Red Bull -->
+    <div class="product-card bg-zinc-900 rounded-3xl overflow-hidden border border-orange-500/30 relative">
+        <div class="bestseller">ХИТ 🔥</div>
+        
+        <!-- Ленточка "Нет в продаже" -->
+        <div class="absolute top-3 -right-2 bg-red-600 text-white font-bold text-sm md:text-base px-10 py-1 rotate-12 shadow-xl z-20
+                    before:absolute before:-left-6 before:top-0 before:w-6 before:h-full before:bg-red-700 before:-skew-x-12
+                    after:absolute after:-right-6 after:top-0 after:w-6 after:h-full after:bg-red-700 after:-skew-x-12">
+            <div class="relative z-10 tracking-wider">НЕТ В ПРОДАЖЕ</div>
+        </div>
+
+        <div class="h-72 md:h-80 bg-gradient-to-br from-blue-950 via-slate-800 to-zinc-900 flex items-center justify-center p-6 md:p-8 relative">
+            <img src="https://wertigo.ru/api/shared_files/ee76e133-4b4c-4823-ace2-765ba379e84f/files/ee76e133-4b4c-4823-ace2-765ba379e84f/preview" 
+                alt="Red Bull" class="w-52 md:w-64 drop-shadow-2xl opacity-75">
+            
+            <!-- Затемняющая плашка -->
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <div class="text-4xl md:text-5xl font-black text-white/90 tracking-widest rotate-[-12deg] border-4 border-white/70 px-8 py-3">
+                    НЕТ В ПРОДАЖЕ
+                </div>
+            </div>
+        </div>
+        
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-start">
+                <div>
+                    <div class="text-blue-400 font-bold text-sm">Original</div>
+                    <div class="text-2xl md:text-3xl font-bold">РедБул</div>
+                </div>
+                <div class="price-tag text-white px-5 py-2 rounded-2xl text-right opacity-50">
+                    <div class="text-xs">ЦЕНА</div>
+                    <div class="text-3xl md:text-4xl font-black line-through">280₽</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- WHY US -->
+    <section id="why" class="py-20 md:py-24 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-black mb-10 leading-tight">Почему выбирают<br>ENERGY LOW?</h2>
+                    <div class="space-y-10">
+                        <div class="flex gap-6">
+                            <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">💰</div>
+                            <div>
+                                <div class="text-xl font-semibold mb-1">Цены ниже рыночных</div>
+                                <div class="text-zinc-400">Прямые поставки от производителей без наценок</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">📦</div>
+                            <div>
+                                <div class="text-xl font-semibold mb-1">Свежие партии</div>
+                                <div class="text-zinc-400">Мы следим за сроками годности. Только актуальный товар</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <img src="https://wertigo.ru/api/shared_files/860ca9eb-b7d7-4b51-81d6-4a1295244926/files/860ca9eb-b7d7-4b51-81d6-4a1295244926/preview" 
+                        alt="Энергетики" class="rounded-3xl w-full">
+                    <div class="absolute -bottom-6 -left-4 md:-left-6 bg-zinc-900 p-6 md:p-8 rounded-3xl border border-orange-500/30 max-w-[280px]">
+                        <div class="text-5xl md:text-6xl font-black text-orange-400 mb-2">15-30%</div>
+                        <div class="text-xl md:text-2xl font-medium">экономия на каждой банке</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК СВЯЗЬ -->
+    <section class="py-16 bg-zinc-900 border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-black mb-3">Связь с нами</h2>
+                <p class="text-zinc-400">Ответим быстро • Работаем каждый день</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <!-- Telegram EL_LNR -->
+                <a href="https://t.me/EL_LNR" target="_blank"
+                class="flex flex-col items-center gap-4 bg-zinc-800 hover:bg-zinc-700 p-10 rounded-3xl transition-all group">
+                    <div class="w-20 h-20 bg-[#229ED9] rounded-3xl flex items-center justify-center text-5xl group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-telegram-plane"></i>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-semibold text-xl">Telegram</div>
+                        <div class="text-emerald-400 text-lg">@EL_LNR</div>
+                    </div>
                 </a>
                 
-                <div class="flex gap-6 text-sm">
-                    <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 bg-emerald-500 rounded-2xl flex items-center justify-center text-xl">✅</div>
-                        <div>Оригинал</div>
+                <!-- Новый Telegram EnergyLow_LNR -->
+                <a href="https://t.me/EnergyLow_LNR" target="_blank"
+                class="flex flex-col items-center gap-4 bg-zinc-800 hover:bg-zinc-700 p-10 rounded-3xl transition-all group">
+                    <div class="w-20 h-20 bg-[#229ED9] rounded-3xl flex items-center justify-center text-5xl group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-telegram-plane"></i>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 bg-emerald-500 rounded-2xl flex items-center justify-center text-xl">💯</div>
-                        <div>Не просрочка</div>
+                    <div class="text-center">
+                        <div class="font-semibold text-xl">Telegram Канал</div>
+                        <div class="text-emerald-400 text-lg">@EnergyLow_LNR</div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="relative mt-8 md:mt-0">
-                <img src="https://wertigo.ru/api/shared_files/08f79686-de90-4dc8-a54f-06ec289c1e4b/files/08f79686-de90-4dc8-a54f-06ec289c1e4b/preview" 
-                     alt="Энергетик Burn" 
-                     class="w-full rounded-3xl shadow-2xl shadow-orange-500/30">
-                <div class="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 bg-black px-5 py-3 sm:px-6 sm:py-4 rounded-3xl border border-orange-500 shadow-xl">
-                    <div class="flex items-center gap-3">
-                        <div class="text-4xl sm:text-5xl">🔥</div>
-                        <div>
-                            <div class="text-orange-400 text-sm font-bold">Бёрн</div>
-                            <div class="text-3xl sm:text-4xl font-black text-white">120₽</div>
-                            <div class="text-zinc-500 line-through">140₽</div>
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
-    </div>
-    
-    <div class="absolute bottom-8 left-1/2 flex flex-col items-center text-xs text-zinc-500 md:hidden">
-        <div>Листай вниз</div>
-        <i class="fa-solid fa-chevron-down animate-bounce mt-1"></i>
-    </div>
-</section>
+    </section>
 
-<!-- PRODUCTS -->
-<section id="products" class="py-20 md:py-24 bg-black">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="text-center mb-12 md:mb-16">
-            <h2 class="text-4xl md:text-5xl font-black mb-4">Наши хиты</h2>
-            <p class="inline-block bg-gradient-to-r from-orange-400 to-red-400 text-black font-bold text-lg md:text-xl px-8 py-3 rounded-3xl">
-                Всегда дешевле. Всегда в наличии.
-            </p>
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto px-6 text-center text-zinc-500 text-sm">
+            © 2026 ENERGY LOW — Энергетики выгодно<br>
+            <span class="text-orange-500">Не является официальным магазином брендов. Цены указаны для примера.</span>
         </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            
-            <!-- Burn -->
-            <div class="product-card bg-zinc-900 rounded-3xl overflow-hidden border border-orange-500/30 relative">
-                <div class="discount">СКИДКА 💸</div>
-                <div class="h-72 md:h-80 bg-gradient-to-br from-red-950 via-amber-950 to-red-900 flex items-center justify-center p-6 md:p-8">
-                    <img src="https://wertigo.ru/api/shared_files/08f79686-de90-4dc8-a54f-06ec289c1e4b/files/08f79686-de90-4dc8-a54f-06ec289c1e4b/preview" 
-                         alt="Burn" class="w-52 md:w-64 drop-shadow-2xl">
-                </div>
-                <div class="p-6 md:p-8">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <div class="text-orange-400 font-bold text-sm">Original</div>
-                            <div class="text-2xl md:text-3xl font-bold">Бёрн</div>
-                        </div>
-                        <div class="price-tag text-white px-5 py-2 rounded-2xl text-right">
-                            <div class="text-xs">СЕГОДНЯ</div>
-                            <div class="text-3xl md:text-4xl font-black">120₽</div>
-                            <div class="text-xs line-through opacity-70">140₽</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Adrenaline -->
-            <div class="product-card bg-zinc-900 rounded-3xl overflow-hidden border border-orange-500/30 relative">
-                <div class="bestseller">ХИТ ПРОДАЖ 🔥</div>
-                <div class="h-72 md:h-80 bg-gradient-to-br from-zinc-800 via-zinc-950 to-black flex items-center justify-center p-6 md:p-8">
-                    <img src="https://wertigo.ru/api/shared_files/6f0aef22-25d3-4b88-b574-3bd91a94bf04/files/6f0aef22-25d3-4b88-b574-3bd91a94bf04-2/preview" 
-                         alt="Adrenaline Rush" class="w-52 md:w-64 drop-shadow-2xl">
-                </div>
-                <div class="p-6 md:p-8">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <div class="text-blue-400 font-bold text-sm">Original</div>
-                            <div class="text-2xl md:text-3xl font-bold">Адреналин</div>
-                        </div>
-                        <div class="price-tag text-white px-5 py-2 rounded-2xl text-right">
-                            <div class="text-xs">ЦЕНА</div>
-                            <div class="text-3xl md:text-4xl font-black">140₽</div>
-                            <div class="text-xs line-through opacity-70">150₽ в магазине</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-<!-- Red Bull -->
-<div class="product-card bg-zinc-900 rounded-3xl overflow-hidden border border-orange-500/30 relative">
-    <div class="bestseller">ХИТ 🔥</div>
-    
-    <!-- Ленточка "Нет в продаже" -->
-    <div class="absolute top-3 -right-2 bg-red-600 text-white font-bold text-sm md:text-base px-10 py-1 rotate-12 shadow-xl z-20
-                before:absolute before:-left-6 before:top-0 before:w-6 before:h-full before:bg-red-700 before:-skew-x-12
-                after:absolute after:-right-6 after:top-0 after:w-6 after:h-full after:bg-red-700 after:-skew-x-12">
-        <div class="relative z-10 tracking-wider">НЕТ В ПРОДАЖЕ</div>
-    </div>
-
-    <div class="h-72 md:h-80 bg-gradient-to-br from-blue-950 via-slate-800 to-zinc-900 flex items-center justify-center p-6 md:p-8 relative">
-        <img src="https://wertigo.ru/api/shared_files/ee76e133-4b4c-4823-ace2-765ba379e84f/files/ee76e133-4b4c-4823-ace2-765ba379e84f/preview" 
-             alt="Red Bull" class="w-52 md:w-64 drop-shadow-2xl opacity-75">
-        
-        <!-- Затемняющая плашка -->
-        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <div class="text-4xl md:text-5xl font-black text-white/90 tracking-widest rotate-[-12deg] border-4 border-white/70 px-8 py-3">
-                НЕТ В ПРОДАЖЕ
-            </div>
-        </div>
-    </div>
-    
-    <div class="p-6 md:p-8">
-        <div class="flex justify-between items-start">
-            <div>
-                <div class="text-blue-400 font-bold text-sm">Original</div>
-                <div class="text-2xl md:text-3xl font-bold">РедБул</div>
-            </div>
-            <div class="price-tag text-white px-5 py-2 rounded-2xl text-right opacity-50">
-                <div class="text-xs">ЦЕНА</div>
-                <div class="text-3xl md:text-4xl font-black line-through">280₽</div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-
-<!-- WHY US -->
-<section id="why" class="py-20 md:py-24 bg-zinc-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-            <div>
-                <h2 class="text-4xl md:text-5xl font-black mb-10 leading-tight">Почему выбирают<br>ENERGY LOW?</h2>
-                <div class="space-y-10">
-                    <div class="flex gap-6">
-                        <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">💰</div>
-                        <div>
-                            <div class="text-xl font-semibold mb-1">Цены ниже рыночных</div>
-                            <div class="text-zinc-400">Прямые поставки от производителей без наценок</div>
-                        </div>
-                    </div>
-                    <div class="flex gap-6">
-                        <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">📦</div>
-                        <div>
-                            <div class="text-xl font-semibold mb-1">Свежие партии</div>
-                            <div class="text-zinc-400">Мы следим за сроками годности. Только актуальный товар</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="relative">
-                <img src="https://wertigo.ru/api/shared_files/860ca9eb-b7d7-4b51-81d6-4a1295244926/files/860ca9eb-b7d7-4b51-81d6-4a1295244926/preview" 
-                     alt="Энергетики" class="rounded-3xl w-full">
-                <div class="absolute -bottom-6 -left-4 md:-left-6 bg-zinc-900 p-6 md:p-8 rounded-3xl border border-orange-500/30 max-w-[280px]">
-                    <div class="text-5xl md:text-6xl font-black text-orange-400 mb-2">15-30%</div>
-                    <div class="text-xl md:text-2xl font-medium">экономия на каждой банке</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- БЛОК СВЯЗЬ -->
-<section class="py-16 bg-zinc-900 border-t border-zinc-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="text-center mb-10">
-            <h2 class="text-4xl font-black mb-3">Связь с нами</h2>
-            <p class="text-zinc-400">Ответим быстро • Работаем каждый день</p>
-        </div>
-        
-        <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-            <!-- Telegram -->
-            <a href="https://t.me/EL_LNR" target="_blank"
-               class="flex flex-col items-center gap-4 bg-zinc-800 hover:bg-zinc-700 p-10 rounded-3xl transition-all group">
-                <div class="w-20 h-20 bg-[#229ED9] rounded-3xl flex items-center justify-center text-5xl group-hover:scale-110 transition-transform">
-                    <i class="fa-brands fa-telegram-plane"></i>
-                </div>
-                <div class="text-center">
-                    <div class="font-semibold text-xl">Telegram</div>
-                    <div class="text-emerald-400 text-lg">@EL_LNR</div>
-                </div>
-            </a>
-            
-            <!-- Луганск -->
-            <div class="flex flex-col items-center gap-4 bg-zinc-800 p-10 rounded-3xl">
-                <div class="w-20 h-20 bg-orange-500 rounded-3xl flex items-center justify-center text-5xl">📍</div>
-                <div class="text-center">
-                    <div class="font-semibold text-xl">Луганск</div>
-                    <div class="text-zinc-400 text-sm leading-relaxed">
-                        • Восток<br>
-                        <span class="text-amber-400">Остальные районы — только ОПТ</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-black py-12 border-t border-zinc-800">
-    <div class="max-w-7xl mx-auto px-6 text-center text-zinc-500 text-sm">
-        © 2026 ENERGY LOW — Энергетики выгодно<br>
-        <span class="text-orange-500">Не является официальным магазином брендов. Цены указаны для примера.</span>
-    </div>
-</footer>
-
-<script>
-    // Mobile menu
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    menuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
-        const icon = menuToggle.querySelector('i');
-        if (icon.classList.contains('fa-bars')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
-        }
-    });
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-                if (mobileMenu.classList.contains('open')) mobileMenu.classList.remove('open');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuToggle.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
             }
         });
-    });
-</script>
-</body>
-</html>
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    if (mobileMenu.classList.contains('open')) mobileMenu.classList.remove('open');
+                }
+            });
+        });
+    </script>
+    </body>
+    </html>
